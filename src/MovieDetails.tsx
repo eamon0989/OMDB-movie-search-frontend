@@ -1,16 +1,41 @@
-// const MovieDetails = function({ poster, title, genres, description, writers, directors, stars }:
-// { poster: string, title: string, genres: string, description: string, writers: string, directors: string, stars: string }) {
+import styled from "styled-components";
+
+const MovieCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 15rem;
+  position: relative;
+  border: 1px solid gray;
+`
+
+const MovieCardText = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 0.2rem;
+  padding: 1rem;
+`
+
+const MovieTitle = styled.p`
+  text-align: left;
+  font-weight: bold;
+  /* padding: 0.2rem; */
+`
+
 const MovieListDetails = function({ poster, title, type, year, imdbID }:
 { poster: string, title: string, type: string, year: string, imdbID: string }) {
-  console.log(title);
+  // console.log(title);
   return (
-    <div>
+    <MovieCard>
       <img src={poster} alt="" />
-      <p>{title}</p>
-      <p>{type}</p>
-      <p>{year}</p>
-      <p>{imdbID}</p>
-    </div>
+      <MovieCardText>
+        <MovieTitle>{title}</MovieTitle>
+        <p>{type}</p>
+        <p>{year}</p>
+        {/* <p>{imdbID}</p> */}
+      </MovieCardText>
+    </MovieCard>
   )
 }
 
