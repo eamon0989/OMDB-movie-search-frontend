@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const MovieCard = styled.div`
   display: flex;
@@ -7,7 +7,7 @@ const MovieCard = styled.div`
   width: 15rem;
   position: relative;
   border: 1px solid gray;
-`
+`;
 
 const MovieCardText = styled.div`
   display: flex;
@@ -15,17 +15,18 @@ const MovieCardText = styled.div`
   text-align: center;
   gap: 0.2rem;
   padding: 1rem;
-`
+`;
 
 const MovieTitle = styled.p`
   text-align: left;
   font-weight: bold;
   /* padding: 0.2rem; */
-`
+`;
 
-const MovieListDetails = function({ poster, title, type, year, imdbID }:
+const MovieListDetails = function({
+  poster, title, type, year, imdbID,
+}:
 { poster: string, title: string, type: string, year: string, imdbID: string }) {
-
   if (poster === 'N/A') return null;
 
   return (
@@ -35,10 +36,10 @@ const MovieListDetails = function({ poster, title, type, year, imdbID }:
         <MovieTitle>{title}</MovieTitle>
         <p>{type}</p>
         <p>{year}</p>
-        {/* <p>{imdbID}</p> */}
+        <p hidden>{imdbID}</p>
       </MovieCardText>
     </MovieCard>
-  )
-}
+  );
+};
 
 export default MovieListDetails;
