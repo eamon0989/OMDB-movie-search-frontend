@@ -45,6 +45,7 @@ const ErrorMessage = styled.p`
 const SearchForm = function({ setMovies }: { setMovies: (arg0: MovieListItem[]) => void }) {
   const [title, setTitle] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  
   const getInfoFromAPI = async function(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
   
@@ -64,6 +65,9 @@ const SearchForm = function({ setMovies }: { setMovies: (arg0: MovieListItem[]) 
       } catch (error: unknown) {
         console.log(error);
       }
+    } else {
+      setErrorMessage('Please write a title.');
+      setMovies([]);
     }
   }
   
@@ -72,10 +76,10 @@ const SearchForm = function({ setMovies }: { setMovies: (arg0: MovieListItem[]) 
       <Form onSubmit={(event) => getInfoFromAPI(event)} action="">
         <label htmlFor="title">Find a film: </label>
         <div>
-          <Input value={title} onChange={(event) => setTitle(event.target.value)} name='title' type="text"></Input>
+          <Input id='search-bar' value={title} onChange={(event) => setTitle(event.target.value)} name='title' type="text"></Input>
           <SubmitButton type='submit'>Submit</SubmitButton>
         </div>
-        {<ErrorMessage>{errorMessage}</ErrorMessage>}
+        {<ErrorMessage id='error-message'>{errorMessage}</ErrorMessage>}
       </Form>
     </>
   )
