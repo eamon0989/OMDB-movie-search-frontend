@@ -26,7 +26,7 @@ const MovieList = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
-  padding: 2rem;
+  padding: 0 2rem 2rem 2rem;
   justify-content: center;
 `
 
