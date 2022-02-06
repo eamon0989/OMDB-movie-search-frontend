@@ -25,10 +25,12 @@ const MovieTitle = styled.p`
 
 const MovieListDetails = function({ poster, title, type, year, imdbID }:
 { poster: string, title: string, type: string, year: string, imdbID: string }) {
-  // console.log(title);
+
+  if (poster === 'N/A') return null;
+
   return (
     <MovieCard>
-      <img src={poster} alt="" />
+      <img height={356} width={240} src={poster} alt="" />
       <MovieCardText>
         <MovieTitle>{title}</MovieTitle>
         <p>{type}</p>

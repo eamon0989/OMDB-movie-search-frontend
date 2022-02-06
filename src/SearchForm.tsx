@@ -11,9 +11,11 @@ const Form = styled.form`
   margin: auto;
   display: flex;
   padding: 4rem;
-  flex-direction: row;
+  font-size: .875rem;
+  line-height: 1.25rem;
+  flex-direction: column;
   width: fit-content;
-  align-items: center;
+  align-items: left;
 `
 
 const Input = styled.input`
@@ -22,7 +24,7 @@ const Input = styled.input`
   font-size: .875rem;
   line-height: 1.25rem;
   padding: 0.3rem 0.7rem;
-  margin-left: 0.5rem;
+  /* margin-left: 0.5rem; */
 `
 
 const SubmitButton = styled.button`
@@ -31,17 +33,31 @@ const SubmitButton = styled.button`
   font-size: .875rem;
   line-height: 1.25rem;
   padding: 0.3rem 0.7rem;
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 500;
+`
+
+const ErrorMessage = styled.p`
+  color: red;
+  height: 1.25rem;
 `
 
 const SearchForm = function({ setMovies }: { setMovies: (arg0: MovieListItem[]) => void }) {
   const [title, setTitle] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const getInfoFromAPI = async function(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
   
     if (title.length > 0) {
-      const movies: MovieListItem[] = await getMovieDetailsByTitle(title);
-      if (isMovieListItem(movies)) {
+      const movies = await getMovieDetailsByTitle(title);
+      console.log(movies);
+      if (movies && isMovieListItem(movies)) {
         setMovies(movies);
+        if (errorMessage) setErrorMessage('');
+      } else {
+        setErrorMessage('No movies match your search.');
+        setMovies([]);
       }
 
       // setTitle('');
@@ -52,8 +68,11 @@ const SearchForm = function({ setMovies }: { setMovies: (arg0: MovieListItem[]) 
     <>
       <Form onSubmit={(event) => getInfoFromAPI(event)} action="">
         <label htmlFor="title">Find a film: </label>
-        <Input value={title} onChange={(event) => setTitle(event.target.value)} name='title' type="text"></Input>
-        <SubmitButton type='submit'>Submit</SubmitButton>
+        <div>
+          <Input value={title} onChange={(event) => setTitle(event.target.value)} name='title' type="text"></Input>
+          <SubmitButton type='submit'>Submit</SubmitButton>
+        </div>
+        {<ErrorMessage>{errorMessage}</ErrorMessage>}
       </Form>
     </>
   )

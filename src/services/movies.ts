@@ -7,7 +7,7 @@ const getMovieDetailsByTitle = async function(title: string) {
   const response = await fetch(`${baseUrl}${title}`);
   const json = await response.json();
   // console.log(json);
-  const movies: MovieListItem[] = await json?.Search;
+  const movies: MovieListItem[] | undefined = await json?.Search;
   // console.log(movies);
   return movies;
 }
