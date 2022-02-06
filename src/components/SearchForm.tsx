@@ -24,6 +24,11 @@ const Input = styled.input`
   font-size: .875rem;
   line-height: 1.25rem;
   padding: 0.3rem 0.7rem;
+  border-bottom-right-radius: 0px;
+  &:focus {
+        outline: none;
+        box-shadow: 0px 0px 2px #3b82f6;
+    }
 `
 
 const SubmitButton = styled.button`
@@ -35,6 +40,10 @@ const SubmitButton = styled.button`
   background-color: #3b82f6;
   color: white;
   font-weight: 500;
+  &:focus {
+        outline: none;
+        box-shadow: 0px 0px 2px #3b82f6;
+    }
 `
 
 const ErrorMessage = styled.p`
