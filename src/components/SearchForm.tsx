@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { MovieListItem } from "../Types";
-import getMovieDetailsByTitle from "./services/movies";
+import { MovieListItem } from "../../Types";
+import getMovieDetailsByTitle from "../services/movies";
 
 const isMovieListItem = function(array: MovieListItem[]): array is MovieListItem[] {
   return (array as MovieListItem[])[0]?.Title !== undefined;
@@ -24,7 +24,6 @@ const Input = styled.input`
   font-size: .875rem;
   line-height: 1.25rem;
   padding: 0.3rem 0.7rem;
-  /* margin-left: 0.5rem; */
 `
 
 const SubmitButton = styled.button`
@@ -51,7 +50,7 @@ const SearchForm = function({ setMovies }: { setMovies: (arg0: MovieListItem[]) 
   
     if (title.length > 0) {
       const movies = await getMovieDetailsByTitle(title);
-      console.log(movies);
+
       if (movies && isMovieListItem(movies)) {
         setMovies(movies);
         if (errorMessage) setErrorMessage('');

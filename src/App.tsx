@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState } from "react";
 import { MovieListItem } from "../Types";
-import MovieListDetails from "./MovieDetails";
-import SearchForm from "./SearchForm";
+import MovieListDetails from "./components/MovieDetails";
+import SearchForm from "./components/SearchForm";
 
 import styled from 'styled-components';
 
