@@ -1,10 +1,12 @@
 import React from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { useState } from "react";
 import { MovieListItem } from "../Types";
 import MovieListDetails from "./components/MovieDetails";
 import SearchForm from "./components/SearchForm";
 
 import styled from 'styled-components';
+import Fallback from './components/Fallback';
 
 const Nav = styled.nav`
   background-color: #1f2937;  
@@ -36,12 +38,15 @@ function App() {
       <Nav>
         <P>ODMB Search App</P>
       </Nav>
-      <main>
-        <SearchForm setMovies={setMovies}/>
-        <MovieList>
-          {movies.length > 0 && movies.map(movie => <MovieListDetails key={movie.imdbID} poster={movie.Poster} title={movie.Title} type={movie.Type} year={movie.Year} imdbID={movie.imdbID} />)}
-        </MovieList>
-      </main>    
+      <ErrorBoundary FallbackComponent={Fallback}>
+        <main>
+          <SearchForm setMovies={setMovies}/>
+          <MovieList>
+            {movies.length > 0 && movies.map(movie => <MovieListDetails key={movie.imdbID} poster={movie.Poster} title={movie.Title} type={movie.Type} year={movie.Year} imdbID={movie.imdbID} />)}
+          </MovieList>
+        </main>    
+      </ErrorBoundary>
+
     </>
   );
 }

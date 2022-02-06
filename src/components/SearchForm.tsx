@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { MovieListItem } from "../../Types";
-import getMovieDetailsByTitle from "../services/movies";
+import getMovieListByTitleSearch from "../services/movies";
 
 const isMovieListItem = function(array: MovieListItem[]): array is MovieListItem[] {
   return (array as MovieListItem[])[0]?.Title !== undefined;
@@ -49,17 +49,21 @@ const SearchForm = function({ setMovies }: { setMovies: (arg0: MovieListItem[]) 
     event.preventDefault();
   
     if (title.length > 0) {
-      const movies = await getMovieDetailsByTitle(title);
+      try {
+        const movies = await getMovieListByTitleSearch(title);
 
-      if (movies && isMovieListItem(movies)) {
-        setMovies(movies);
-        if (errorMessage) setErrorMessage('');
-      } else {
-        setErrorMessage('No movies match your search.');
-        setMovies([]);
+        if (movies && isMovieListItem(movies)) {
+          setMovies(movies);
+          setTitle('');
+          if (errorMessage) setErrorMessage('');
+        } else {
+          setErrorMessage('No movies match your search.');
+          setMovies([]);
+        }
+  
+      } catch (error: unknown) {
+        console.log(error);
       }
-
-      // setTitle('');
     }
   }
   
