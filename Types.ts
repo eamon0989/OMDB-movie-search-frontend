@@ -4,4 +4,4 @@ export type MovieListItem = {
   Type: string,
   Year: string,
   imdbID: string
-}
+};

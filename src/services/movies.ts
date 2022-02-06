@@ -1,4 +1,4 @@
-import { MovieListItem } from "../../Types";
+import { MovieListItem } from '../../Types';
 
 const baseUrl = 'http://www.omdbapi.com/?apikey=c491a5c4&s=';
 
@@ -7,6 +7,6 @@ const getMovieListByTitleSearch = async function(title: string) {
   const json = await response.json();
   const movies: MovieListItem[] | undefined = await json?.Search;
   return movies;
-}
+};
 
 export default getMovieListByTitleSearch;

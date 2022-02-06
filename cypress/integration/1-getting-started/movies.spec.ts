@@ -45,5 +45,4 @@ describe('Movie search app', function() {
     cy.get('#error-message')
       .should('contain', 'No movies match your search.')
   })
-  
 })

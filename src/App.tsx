@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
-import { useState } from "react";
-import { MovieListItem } from "../Types";
-import MovieListDetails from "./components/MovieDetails";
-import SearchForm from "./components/SearchForm";
-
 import styled from 'styled-components';
+import { MovieListItem } from '../Types';
+import MovieListDetails from './components/MovieDetails';
+import SearchForm from './components/SearchForm';
+
 import Fallback from './components/Fallback';
 
 const Nav = styled.nav`
@@ -19,7 +18,7 @@ const Nav = styled.nav`
 const P = styled.p`
   padding: 2rem;
   margin: 0;
-`
+`;
 
 const MovieList = styled.div`
   display: flex;
@@ -28,7 +27,7 @@ const MovieList = styled.div`
   gap: 1rem;
   padding: 0 2rem 2rem 2rem;
   justify-content: center;
-`
+`;
 
 function App() {
   const [movies, setMovies] = useState<MovieListItem[]>([]);
@@ -42,9 +41,11 @@ function App() {
         <main>
           <SearchForm setMovies={setMovies}/>
           <MovieList>
-            {movies.length > 0 && movies.map(movie => <MovieListDetails key={movie.imdbID} poster={movie.Poster} title={movie.Title} type={movie.Type} year={movie.Year} imdbID={movie.imdbID} />)}
+            {movies.length > 0 && movies
+              .map((movie) => <MovieListDetails key={movie.imdbID} poster={movie.Poster}
+              title={movie.Title} type={movie.Type} year={movie.Year} imdbID={movie.imdbID} />)}
           </MovieList>
-        </main>    
+        </main>
       </ErrorBoundary>
 
     </>
