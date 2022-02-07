@@ -1,13 +1,13 @@
 Steps taken
 
-I tested the API key using curl
+I first tested the API key using curl
 curl -v 'http://www.omdbapi.com/?apikey=c491a5c4&t="The+hunger+games"'
 
-Create a search bar that takes the input string and appends it to http://www.omdbapi.com/?apikey=c491a5c4&t=
+I created a search bar that takes the user input as a string and appends it to http://www.omdbapi.com/?apikey=c491a5c4&t=
 Send request to server
-Parse request
-If request contains movies, show the results
+Parse request as json
 
+If the request contains movies, show the results
 If there are no movies, show a movie not found message
 
 To show the build number publicly, I added it to index.html
