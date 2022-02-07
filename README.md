@@ -1,46 +1,21 @@
-# Getting Started with Create React App
+Steps taken
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+I tested the API key using curl
+curl -v 'http://www.omdbapi.com/?apikey=c491a5c4&t="The+hunger+games"'
 
-## Available Scripts
+Create a search bar that takes the input string and appends it to http://www.omdbapi.com/?apikey=c491a5c4&t=
+Send request to server
+Parse request
+If request contains movies, show the results
 
-In the project directory, you can run:
+If there are no movies, show a movie not found message
 
-### `npm start`
+To show the build number publicly, I added it to index.html
+It gets the value from .env
+Normally .env would not be made public, but in this case it doesn’t matter
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+I chose to hide ‘movies’ that didn’t have posters as they are generally not real movies. If I had more time I would probably have added a placeholder style image instead.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+If I had more time I would add a feature where a user could click on a movie and display more information and I would improve the styling and layout
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+I would also add a more robust fallback component solution
